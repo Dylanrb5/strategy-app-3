@@ -3,11 +3,15 @@ import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-load
 import StatsBar from './components/StatsBar';
 import EnergyGraph from './components/EnergyGraph';
 import { EnergyData } from './EnergyData'; 
+import * as jqcsv from 'jquery-csv'
+
+
 
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZHlsYW4tcmIiLCJhIjoiY2xuNWRidnUxMDZjZTJscGg3bjl0YjkydCJ9.cuBg17Dnnyd1uC0ak9TIcQ';
 
 function App() {
+  console.log("lkjg;lakj", jqcsv.toObjects("./route_data/2022_A.csv"))
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-70.9);
@@ -61,8 +65,8 @@ function App() {
           coordinates: [-94.41210259647566, 39.09358078384889]
         },
         properties: {
-          title: '1: Independece, MO',
-          description: 'nasty place'
+          title: '1: Independence, MO',
+          description: 'Population: 122,088'
         }
       },
       {
@@ -317,12 +321,10 @@ function App() {
             'geometry': {
               'type': 'LineString',
               'coordinates': [
-                [
-                  -95.67524568097107, 39.04719713117554
-                ],
-                [
-                  -94.41210259647566, 39.09358078384889
-                ],
+                [-95.67524568097107, 39.04719713117554],
+                [-95, 38.7], 
+                [-94.8, 39.4],
+                [-94.41210259647566, 39.09358078384889],
               ],
             },
           }
@@ -450,7 +452,7 @@ function App() {
                 Energy
               </h1>
               <div className='w-2/3 h-2/3'>
-                <p>nothing</p>
+                <p></p>
               </div>
             </div>
 
