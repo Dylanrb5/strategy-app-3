@@ -4,6 +4,10 @@ import StatsBar from './components/StatsBar';
 import EnergyGraph from './components/EnergyGraph';
 import { EnergyData } from './EnergyData'; 
 import * as jqcsv from 'jquery-csv'
+// import Data from './route_data/2022_A.csv'
+import stage_A from './2022_A.json'
+import otherData from './2022_A.csv'
+import Papa from 'papaparse'
 
 
 
@@ -11,7 +15,22 @@ import * as jqcsv from 'jquery-csv'
 mapboxgl.accessToken = 'pk.eyJ1IjoiZHlsYW4tcmIiLCJhIjoiY2xuNWRidnUxMDZjZTJscGg3bjl0YjkydCJ9.cuBg17Dnnyd1uC0ak9TIcQ';
 
 function App() {
-  console.log("lkjg;lakj", jqcsv.toObjects("./route_data/2022_A.csv"))
+  // console.log(Papa.parse('2022_A.csv'));
+  // fetch("az.json")
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     console.log(data)
+  //   })
+  // Papa.parse(otherData, {
+  //   complete: function(results) {
+  //       console.log("RESULTS: ", results);
+  //   }
+  // });
+  // const prices = new Map();
+  //   prices.set('Laptop', 1000); 
+  //   prices.set('Smartphone', 800); 
+  // console.log(prices)
+  // console.log(stage_A)
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-70.9);
@@ -310,34 +329,38 @@ function App() {
         }
       })
       
-      map.current.addLayer({
-        id: 'two',
-        type: 'line',
-        source: {
-          'type': 'geojson',
-          'data': {
-            'type': 'Feature',
-            'properties': {},
-            'geometry': {
-              'type': 'LineString',
-              'coordinates': [
-                [-95.67524568097107, 39.04719713117554],
-                [-95, 38.7], 
-                [-94.8, 39.4],
-                [-94.41210259647566, 39.09358078384889],
-              ],
-            },
-          }
-        },
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': '#d90065',
-          'line-width': 8
-        }
-      })
+      // map.current.addLayer({
+      //   "id": 'two',
+      //   "type": 'line',
+      //   'source': {
+      //     'type': 'geojson',
+      //     'data': {
+      //       'type': 'Feature',
+      //       'properties': {},
+      //       'geometry': {
+      //         'type': 'LineString',
+      //         'coordinates': [
+      //           [-95.67524568097107, 39.04719713117554],
+      //           [-95, 38.7], 
+      //           [-94.8, 39.4],
+      //           [-94.41210259647566, 39.09358078384889],
+      //         ],
+      //       },
+      //     }
+      //   },
+      //   "layout": {
+      //     'line-join': 'round',
+      //     'line-cap': 'round'
+      //   },
+      //   "paint": {
+      //     'line-color': '#d90065',
+      //     'line-width': 8
+      //   }
+      // })
+
+      map.current.addLayer(stage_A)
+      
+      // REPEAT FOR A - H oh my god there's 8 of these
 
 
 
